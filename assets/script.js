@@ -1,7 +1,5 @@
-
 // declare variables for URl/API
 // declare variables for cards, buttons, switches
-=======
 // const teamAwesome = thesquad-1
 // Placeholder for future JavaScript functionalities
 
@@ -11,4 +9,4 @@ document
   .addEventListener("change", function () {
     console.log("Selected state:", this.value);
   });
-
+// test
