@@ -1,0 +1,88 @@
+.card {
+  outline: 2px solid red;
+}
+
+.row {
+  display: flex;
+}
+
+/* Custom colors */
+:root {
+  --green: #228b22; /* Forest Green */
+  --dark-brown: #8b4513; /* Dark Brown */
+  --gold: #ffd700; /* Gold */
+  --primary-blue: #007bff; /* Bootstrap primary blue */
+}
+
+/* Header styling */
+.header {
+  background-color: var(--dark-brown);
+  color: white;
+  text-align: left;
+  padding: 1rem 0;
+}
+.header h1,
+button {
+  margin-left: 10px;
+}
+
+/* Sidebar styling */
+.sidebar {
+  background-color: var(--green);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.sidebar h3 {
+  color: white;
+}
+
+.sidebar button,
+.sidebar select {
+  width: 100%;
+}
+
+/* Info section styling in the sidebar */
+.info {
+  color: white;
+}
+
+.form-check-label {
+  margin-left: 1rem;
+}
+
+/* Options buttons in the sidebar */
+.options .btn-light {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+/* Featured Parks section styling */
+.featured-parks {
+  background-color: var(--primary-blue);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Card images styling */
+.card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Footer styling */
+.footer {
+  background-color: var(--dark-brown);
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+}
