@@ -1,1 +1,2 @@
-// const teamAwesome = thesquad-1
+// declare variables for URl/API
+// declare variables for cards, buttons, switches
