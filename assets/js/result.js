@@ -105,3 +105,8 @@ function displayParks(parks) {
 
   console.log("Finished displaying parks");
 }
+
+// Back button
+document.getElementById("backButton").addEventListener("click", function () {
+  window.location.replace("index.html");
+});
