@@ -16,6 +16,7 @@
 
 /* Header styling */
 .header {
+  display: flex;
   background-color: var(--dark-brown);
   color: white;
   text-align: left;
