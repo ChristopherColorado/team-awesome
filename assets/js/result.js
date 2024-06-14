@@ -45,14 +45,22 @@ function fetchWeather(lat, lon, callback) {
 function displayParks(parks) {
   console.log("Displaying parks:", parks);
 
-  const parksContainer = document.getElementById("parksContainer");
-  parksContainer.innerHTML = "";
+  const cardContainer = document.getElementById("cardContainer");
+  cardContainer.innerHTML = "";
 
-  parks.forEach((park) => {
+  parks.forEach((park, index) => {
     console.log("Processing park:", park);
 
     const parkElement = document.createElement("div");
-    parkElement.classList.add("park", "card", "mb-4");
+    parkElement.classList.add("card", "mb-4");
+    parkElement.id = `card${index + 1}`;
+
+    const cardHeader = document.createElement("div");
+    cardHeader.classList.add("card-header");
+    cardHeader.textContent = "Top Result";
+
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
 
     const parkName = document.createElement("h5");
     parkName.classList.add("card-title");
@@ -62,25 +70,22 @@ function displayParks(parks) {
     parkDescription.classList.add("card-text");
     parkDescription.textContent = park.description;
 
-    if (park.images && park.images.length > 0) {
-      const parkImage = document.createElement("img");
-      parkImage.classList.add("card-img-top");
-      parkImage.src = park.images[0].url;
-      parkImage.alt = park.images[0].altText || "Park Image";
-      parkElement.appendChild(parkImage);
-    }
+    const parkLink = document.createElement("a");
+    parkLink.href = park.url;
+    parkLink.classList.add("btn", "btn-primary");
+    parkLink.textContent = "Link to their site";
 
-    const cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
     cardBody.appendChild(parkName);
     cardBody.appendChild(parkDescription);
+    cardBody.appendChild(parkLink);
 
     const weatherContainer = document.createElement("div");
     weatherContainer.classList.add("weather-info");
     cardBody.appendChild(weatherContainer);
 
+    parkElement.appendChild(cardHeader);
     parkElement.appendChild(cardBody);
-    parksContainer.appendChild(parkElement);
+    cardContainer.appendChild(parkElement);
 
     console.log("Appended park element to container");
 
@@ -89,10 +94,10 @@ function displayParks(parks) {
         const weatherInfo = document.createElement("p");
         weatherInfo.classList.add("card-text");
         weatherInfo.innerHTML = `
-            <strong>Weather:</strong> ${weatherData.weather[0].description}<br>
-            <strong>Temp:</strong> ${weatherData.main.temp} °C<br>
-            <strong>Humidity:</strong> ${weatherData.main.humidity}%
-          `;
+              <strong>Weather:</strong> ${weatherData.weather[0].description}<br>
+              <strong>Temp:</strong> ${weatherData.main.temp} °C<br>
+              <strong>Humidity:</strong> ${weatherData.main.humidity}%
+            `;
         weatherContainer.appendChild(weatherInfo);
       });
     }
