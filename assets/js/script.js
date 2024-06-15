@@ -19,3 +19,5 @@ function redirectToResultPage() {
     window.location.href = `result.html?state=${stateCode}`;
   }
 }
+
+const selectContentEl = document.getElementById("slection-content");
