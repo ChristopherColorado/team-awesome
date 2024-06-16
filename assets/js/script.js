@@ -53,6 +53,10 @@ function formInput() {
   optionFormEl.appendChild(topicInput);
   optionFormEl.appendChild(activityInput);
   optionFormEl.appendChild(submitButtonEl);
+
+  document.addEventListener("DOMContentLoaded", function () {
+    formInput();
+  });
 }
 
 // function formInput() {
