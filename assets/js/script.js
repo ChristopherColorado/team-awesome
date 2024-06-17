@@ -1,3 +1,7 @@
+//activity URL = developer.nps.gov/api/v1/activities?q=activities&limit=5&start=0&sort=desc&(apiKey)
+//topic URL = developer.nps.gov/api/v1/topics?q=topics&limit=5&start=0&sort=desc&(apiKey)
+// I have no idea if the q= is correct
+
 // Function to redirect to result page with the selected state code as a query parameter
 function redirectToResultPage() {
   const stateCode = document.getElementById("stateSelector").value;
