@@ -123,6 +123,12 @@ function displayParks(parks) {
         weatherContainer.appendChild(weatherInfo);
       });
     }
+    const wazeLink = document.createElement("a");
+    wazeLink.href = `https://www.waze.com/ul?ll=${park.latitude},${park.longitude}&navigate=yes`;
+    wazeLink.classList.add("btn", "btn-secondary", "mt-2");
+    wazeLink.textContent = "Directions via Waze";
+
+    weatherContainer.appendChild(wazeLink);
   });
 
   console.log("Finished displaying parks");
@@ -131,7 +137,7 @@ function displayParks(parks) {
 //Lightmode/Darmkmode
 
 document.addEventListener("DOMContentLoaded", () => {
-  const themeToggleButton = document.createElement("button")
+  const themeToggleButton = document.createElement("button");
   themeToggleButton.textContent = "Toggle Light/Dark Mode";
   themeToggleButton.classList.add("btn", "btn-secondary");
   themeToggleButton.style.position = "absolute";
