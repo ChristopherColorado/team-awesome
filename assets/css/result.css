@@ -105,7 +105,11 @@ nav h3 {
   border-radius: 10px;
 }
 
-/* Card images styling - updated to fit the pictures on the right side of the cards */
+/* Card styling */
+.card {
+  border: 6px solid black;
+}
+
 .card-body {
   display: flex;
   justify-content: space-between;
@@ -158,4 +162,15 @@ nav h3 {
   padding: 1rem 0;
   margin-top: 50px;
   border-radius: 10px;
+}
+
+/* Modal styling */
+.modal-content {
+  background-color: var(--light-background);
+  color: var(--light-text);
+}
+
+body.dark-mode .modal-content {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
 }
