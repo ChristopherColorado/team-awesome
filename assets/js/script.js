@@ -1,17 +1,3 @@
-//Let's code!!
-
-document
-  .getElementById("stateSelector")
-  .addEventListener("change", function () {
-    console.log("Selected state:", this.value);
-  });
-
-//add an event listener to the state selector to call redirectToResultPage function when the selected state changes
-//this will eventually be changed to happen when we hit a submit button
-document
-  .getElementById("stateSelector")
-  .addEventListener("change", redirectToResultPage);
-
 // Function to redirect to result page with the selected state code as a query parameter
 function redirectToResultPage() {
   const stateCode = document.getElementById("stateSelector").value;
@@ -20,9 +6,22 @@ function redirectToResultPage() {
   }
 }
 
-//Lightmode/Darmkmode
-
+// Add event listener to the submit button to call redirectToResultPage function
 document.addEventListener("DOMContentLoaded", () => {
+  const submitButton = document.createElement("button");
+  submitButton.textContent = "Submit";
+  submitButton.classList.add("btn", "btn-primary");
+  submitButton.style.display = "block";
+  submitButton.style.marginTop = "10px";
+
+  const stateSelectorContainer = document.getElementById(
+    "stateSelectorContainer"
+  );
+  stateSelectorContainer.appendChild(submitButton);
+
+  submitButton.addEventListener("click", redirectToResultPage);
+
+  // Lightmode/Darkmode
   const themeToggleButton = document.createElement("button");
   themeToggleButton.textContent = "Toggle Light/Dark Mode";
   themeToggleButton.classList.add("btn", "btn-secondary");
