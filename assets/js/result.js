@@ -127,6 +127,8 @@ function displayParks(parks) {
     wazeLink.href = `https://www.waze.com/ul?ll=${park.latitude},${park.longitude}&navigate=yes`;
     wazeLink.classList.add("btn", "btn-secondary", "mt-2");
     wazeLink.textContent = "Directions via Waze";
+    wazeLink.setAttribute("target", "_blank");
+    wazeLink.setAttribute("rel", "noopener noreferrer");
 
     weatherContainer.appendChild(wazeLink);
   });
