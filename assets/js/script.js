@@ -27,14 +27,14 @@
 //Lightmode/Darmkmode
 
 document.addEventListener("DOMContentLoaded", () => {
-  const themeToggleButton = document.createElement("button");
-  themeToggleButton.textContent = "Toggle Light/Dark Mode";
-  themeToggleButton.classList.add("btn", "btn-secondary");
-  themeToggleButton.style.position = "absolute";
-  themeToggleButton.style.top = "10px";
-  themeToggleButton.style.right = "10px";
+  const themeToggleButton = document.getElementById("#theme-btn");
+  // themeToggleButton.textContent = "Toggle Light/Dark Mode";
+  // themeToggleButton.classList.add("btn", "btn-secondary");
+  // themeToggleButton.style.position = "absolute";
+  // themeToggleButton.style.top = "10px";
+  // themeToggleButton.style.right = "10px";
 
-  document.querySelector(".header").appendChild(themeToggleButton);
+  // document.querySelector(".header").appendChild(themeToggleButton);
 
   const setTheme = (theme) => {
     document.body.classList.toggle("dark-mode", theme === "dark");
