@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   submitButton.addEventListener("click", redirectToResultPage);
 
+  // Comment to push
   // Lightmode/Darkmode
   const themeToggleButton = document.createElement("button");
   themeToggleButton.textContent = "Toggle Light/Dark Mode";
