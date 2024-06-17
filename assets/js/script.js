@@ -20,46 +20,9 @@
 //   }
 // }
 
-const searchOptions = ["", "", ""];
-
-function formInput() {
-  const selectContentEl = document.getElementById("selection-content");
-  console.log(selectContentEl);
-
-  const optionFormEl = document.getElementById("task-form");
-  // optionFormEl.classList.add("classForm");
-  // optionFormEl.setAttribute("id", "formId");
-  // optionFormEl.textContent = "Options Selected";
-  console.log(optionFormEl);
-
-  const stateInput = document.getElementById("stateSelector");
-  const topicInput = document.getElementById("topicSelector");
-  const activityInput = document.getElementById("activitiesSelector");
-  const submitButtonEl = document.getElementById("submit-options");
-
-  optionFormEl.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    // Update selectContentEl with form inputs
-    selectContentEl.innerHTML =
-      stateInput.value +
-      "<br>" +
-      topicInput.value +
-      "<br>" +
-      activityInput.value +
-      "<br>";
-  });
-
-  selectContentEl.appendChild(optionFormEl);
-  optionFormEl.appendChild(stateInput);
-  optionFormEl.appendChild(topicInput);
-  optionFormEl.appendChild(activityInput);
-  optionFormEl.appendChild(submitButtonEl);
-
-  document.addEventListener("DOMContentLoaded", function () {
-    formInput();
-  });
-}
+//activity URL = developer.nps.gov/api/v1/activities?q=activities&limit=5&start=0&sort=desc&(apiKey)
+//topic URL = developer.nps.gov/api/v1/topics?q=topics&limit=5&start=0&sort=desc&(apiKey)
+// I have no idea if the q= is correct
 
 //Lightmode/Darmkmode
 
