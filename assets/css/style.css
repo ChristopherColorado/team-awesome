@@ -35,7 +35,15 @@ body.dark-mode {
 }
 
 .header button {
-  position: static;
+  position: relative;
+}
+
+.btn-primary {
+  top: 10px;
+  left: 10px;
+}
+
+.btn-secondary {
   top: 10px;
   right: 10px;
 }
