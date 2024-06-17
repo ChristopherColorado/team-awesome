@@ -20,6 +20,8 @@
 //   }
 // }
 
+const searchOptions = ["", "", ""];
+
 function formInput() {
   const selectContentEl = document.getElementById("selection-content");
   console.log(selectContentEl);
