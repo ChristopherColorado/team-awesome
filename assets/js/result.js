@@ -31,7 +31,7 @@ function fetchParks(stateCode) {
 
 function fetchWeather(lat, lon, callback) {
   const apiKey = "aea084410e2a1fd8fa28fba82202fd04";
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
 
   fetch(url)
     .then((response) => response.json())
@@ -60,7 +60,10 @@ function displayParks(parks) {
     cardHeader.textContent = "Top Result";
 
     const cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
+    cardBody.classList.add("card-body", "d-flex");
+
+    const textContainer = document.createElement("div");
+    textContainer.classList.add("text-container");
 
     const parkName = document.createElement("h5");
     parkName.classList.add("card-title");
@@ -70,18 +73,37 @@ function displayParks(parks) {
     parkDescription.classList.add("card-text");
     parkDescription.textContent = park.description;
 
-    const parkLink = document.createElement("a");
-    parkLink.href = park.url;
-    parkLink.classList.add("btn", "btn-primary");
-    parkLink.textContent = "Link to their site";
-
-    cardBody.appendChild(parkName);
-    cardBody.appendChild(parkDescription);
-    cardBody.appendChild(parkLink);
+    textContainer.appendChild(parkName);
+    textContainer.appendChild(parkDescription);
 
     const weatherContainer = document.createElement("div");
     weatherContainer.classList.add("weather-info");
-    cardBody.appendChild(weatherContainer);
+    textContainer.appendChild(weatherContainer);
+
+    const linkContainer = document.createElement("div");
+    linkContainer.classList.add("link-container");
+
+    const parkLink = document.createElement("a");
+    parkLink.href = park.url;
+    parkLink.classList.add("btn", "btn-primary");
+    parkLink.textContent = "Official NPS Page";
+
+    linkContainer.appendChild(parkLink);
+    textContainer.appendChild(linkContainer);
+
+    if (park.images && park.images.length > 0) {
+      const imageContainer = document.createElement("div");
+      imageContainer.classList.add("image-container");
+      const parkImage = document.createElement("img");
+      parkImage.src = park.images[0].url;
+      parkImage.classList.add("card-img");
+      parkImage.alt = park.fullName;
+
+      imageContainer.appendChild(parkImage);
+      cardBody.appendChild(imageContainer);
+    }
+
+    cardBody.appendChild(textContainer);
 
     parkElement.appendChild(cardHeader);
     parkElement.appendChild(cardBody);
@@ -95,7 +117,7 @@ function displayParks(parks) {
         weatherInfo.classList.add("card-text");
         weatherInfo.innerHTML = `
               <strong>Weather:</strong> ${weatherData.weather[0].description}<br>
-              <strong>Temp:</strong> ${weatherData.main.temp} °C<br>
+              <strong>Temp:</strong> ${weatherData.main.temp} °F<br>
               <strong>Humidity:</strong> ${weatherData.main.humidity}%
             `;
         weatherContainer.appendChild(weatherInfo);
@@ -105,6 +127,34 @@ function displayParks(parks) {
 
   console.log("Finished displaying parks");
 }
+
+//Lightmode/Darmkmode
+
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggleButton = document.createElement("button");
+  themeToggleButton.textContent = "Toggle Light/Dark Mode";
+  themeToggleButton.classList.add("btn", "btn-secondary");
+  themeToggleButton.style.position = "absolute";
+  themeToggleButton.style.top = "10px";
+  themeToggleButton.style.right = "10px";
+
+  document.querySelector(".header").appendChild(themeToggleButton);
+
+  const setTheme = (theme) => {
+    document.body.classList.toggle("dark-mode", theme === "dark");
+    localStorage.setItem("theme", theme);
+  };
+
+  const currentTheme = localStorage.getItem("theme") || "light";
+  setTheme(currentTheme);
+
+  themeToggleButton.addEventListener("click", () => {
+    const newTheme = document.body.classList.contains("dark-mode")
+      ? "light"
+      : "dark";
+    setTheme(newTheme);
+  });
+});
 
 // Back button
 document.getElementById("backButton").addEventListener("click", function () {

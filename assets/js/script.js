@@ -19,3 +19,31 @@ function redirectToResultPage() {
     window.location.href = `result.html?state=${stateCode}`;
   }
 }
+
+//Lightmode/Darmkmode
+
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggleButton = document.createElement("button");
+  themeToggleButton.textContent = "Toggle Light/Dark Mode";
+  themeToggleButton.classList.add("btn", "btn-secondary");
+  themeToggleButton.style.position = "absolute";
+  themeToggleButton.style.top = "10px";
+  themeToggleButton.style.right = "10px";
+
+  document.querySelector(".header").appendChild(themeToggleButton);
+
+  const setTheme = (theme) => {
+    document.body.classList.toggle("dark-mode", theme === "dark");
+    localStorage.setItem("theme", theme);
+  };
+
+  const currentTheme = localStorage.getItem("theme") || "light";
+  setTheme(currentTheme);
+
+  themeToggleButton.addEventListener("click", () => {
+    const newTheme = document.body.classList.contains("dark-mode")
+      ? "light"
+      : "dark";
+    setTheme(newTheme);
+  });
+});
