@@ -32,6 +32,7 @@ body.dark-mode {
   height: 125px;
   border-radius: 10px;
   position: relative;
+  
 }
 
 .header button {
@@ -44,6 +45,7 @@ body.dark-mode {
 }
 
 .btn-secondary {
+  justify-content: end;
   top: 10px;
   right: 10px;
 }
