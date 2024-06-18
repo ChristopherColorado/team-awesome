@@ -1,8 +1,11 @@
-// Fetch and display parks based on state code from URL
+// Fetch and display parks based on state code, activity, and topic from URL
 document.addEventListener("DOMContentLoaded", () => {
   const stateCode = getQueryParam("state");
+  const activity = getQueryParam("activity");
+  const topic = getQueryParam("topic");
+
   if (stateCode) {
-    fetchParks(stateCode);
+    fetchParks(stateCode, activity, topic);
   }
 
   // Back button
@@ -11,13 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Light/Dark mode toggle
-  const themeToggleButton = document.createElement("button");
-  themeToggleButton.textContent = "Toggle Light/Dark Mode";
-  themeToggleButton.classList.add("btn", "btn-secondary");
-  themeToggleButton.style.position = "absolute";
-  themeToggleButton.style.top = "10px";
-  themeToggleButton.style.right = "10px";
-  document.querySelector(".header").appendChild(themeToggleButton);
+  const themeToggleButton = document.getElementById("toggleTheme");
   const setTheme = (theme) => {
     document.body.classList.toggle("dark-mode", theme === "dark");
     localStorage.setItem("theme", theme);
@@ -37,14 +34,34 @@ function getQueryParam(name) {
   return urlParams.get(name);
 }
 
-async function fetchParks(stateCode) {
+async function fetchParks(stateCode, activity, topic) {
   const apiKey = "jLzKx2ki9dlZhspMbatyVvTTOEMr9jpRFO1vGdLM";
-  const url = `https://developer.nps.gov/api/v1/parks?stateCode=${stateCode}&api_key=${apiKey}`;
+  let url = `https://developer.nps.gov/api/v1/parks?stateCode=${stateCode}&api_key=${apiKey}`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
-    displayParks(data.data);
+    let parks = data.data;
+
+    // Filter parks by activity if specified
+    if (activity) {
+      parks = parks.filter((park) =>
+        park.activities.some((act) =>
+          act.name.toLowerCase().includes(activity.toLowerCase())
+        )
+      );
+    }
+
+    // Filter parks by topic if specified
+    if (topic) {
+      parks = parks.filter((park) =>
+        park.topics.some((top) =>
+          top.name.toLowerCase().includes(topic.toLowerCase())
+        )
+      );
+    }
+
+    displayParks(parks);
   } catch (error) {
     console.error("Error fetching parks:", error);
   }
@@ -66,9 +83,9 @@ function displayParks(parks) {
   const cardContainer = document.getElementById("cardContainer");
   cardContainer.innerHTML = "";
 
-  parks.forEach((park, index) => {
+  parks.forEach((park) => {
     const parkElement = document.createElement("div");
-    parkElement.classList.add("col-md-6", "mb-4");
+    parkElement.classList.add("col-md-4", "mb-4"); // changed this to col-md-4 for three columns
 
     const card = document.createElement("div");
     card.classList.add("card");
@@ -79,7 +96,7 @@ function displayParks(parks) {
       park.images && park.images.length > 0 ? park.images[0].url : "";
     parkImage.classList.add("card-img-top");
     parkImage.alt = park.fullName;
-    parkImage.style.cursor = "pointer"; // Indicate that the image is clickable
+    parkImage.style.cursor = "pointer"; // change cursor so you can ctell you can click on it
 
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
@@ -118,11 +135,14 @@ async function showModal(park) {
   if (park.latitude && park.longitude) {
     const weatherData = await fetchWeather(park.latitude, park.longitude);
     if (weatherData) {
-      modalContent.innerHTML += `
-        <p><strong>Weather:</strong> ${weatherData.weather[0].description}</p>
-        <p><strong>Temp:</strong> ${weatherData.main.temp} °F</p>
-        <p><strong>Humidity:</strong> ${weatherData.main.humidity}%</p>
+      const weatherInfo = `
+        <div class="weather-info">
+          <p><strong>Weather:</strong> ${weatherData.weather[0].description}</p>
+          <p><strong>Temp:</strong> ${weatherData.main.temp} °F</p>
+          <p><strong>Humidity:</strong> ${weatherData.main.humidity}%</p>
+        </div>
       `;
+      modalContent.innerHTML += weatherInfo;
       modalContent.innerHTML += `
         <a href="https://www.waze.com/ul?ll=${park.latitude},${park.longitude}&navigate=yes" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Directions via Waze</a>
       `;
