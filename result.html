@@ -14,16 +14,21 @@
   </head>
   <body>
     <header class="header">
+      <button class="btn btn-primary mb-2" id="backButton">Back</button>
       <h1 class="text-center align-middle m-auto">
         National Park Service Park Information
       </h1>
-      <button class="btn btn-primary mb-2" id="backButton">Back</button>
+      <button class="btn btn-secondary mb-2" id="toggleTheme">
+        Toggle Light/Dark Mode
+      </button>
     </header>
+
+    <div class="dark-overlay"></div>
 
     <div class="container-fluid">
       <div class="row">
         <!-- Main section -->
-        <main class="col-md-9">
+        <main class="col-12">
           <h2 class="featured-parks">Featured Parks</h2>
           <div class="row" id="cardContainer">
             <!-- Dynamic Cards Will Be Inserted Here -->
