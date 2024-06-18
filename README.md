@@ -1,4 +1,4 @@
-# team-awesome / [Title]
+# team-awesome / National Pars Service Park Information
 
 ## USER STORY
 
@@ -18,3 +18,14 @@ Given a functioning web application about national parks:
 8. When the user clicks "Survive the Wild" option button, they are taken to the homepage of a guide to wilderness survival.
 9. When the user clicks the "Winter Parks: option button, then they are taken to the homepage of the The Wilderness Society providing a list of national parks to attend to during the winter timeframe.
 10. When the user clicks the "Explore Oregon!" option button, then they are taken to the homepage of Visit Oregon where they can play an interactive game of the 1990 version of "The Oregon Trail".
+
+### Technologies Used:
+
+1. ChatGPT
+2. Xpert Learning Assistant
+3. Bootstrap
+4. JQuery
+
+### Screenshot
+
+### Link to Deployed Application
